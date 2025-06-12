@@ -1,0 +1,88 @@
+Here's a cleaned-up and complete version of your `AdminPage` component with functional imports and structure ready to drop into a Replit React project (using Tailwind CSS + ShadCN UI-style setup):
+
+> ✅ **Ensure** your `Dialog`, `Button`, `Settings`, and `Analytics` components are correctly imported from your component library (e.g., `@/components/ui/...`).
+
+---
+
+```tsx
+import { useState } from 'react';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from '@/components/ui/dialog'; // <-- Update path as needed
+import { Button } from '@/components/ui/button'; // <-- Update path as needed
+import { Settings, BarChart3 as Analytics } from 'lucide-react'; // Icons from lucide-react
+
+const AdminPage = () => {
+  const [showAnalytics, setShowAnalytics] = useState(false);
+  const [showSettings, setShowSettings] = useState(false);
+
+  return (
+    <div className="p-6">
+      {/* Header Buttons */}
+      <div className="flex space-x-2 mb-4">
+        <Button variant="outline" size="sm" onClick={() => setShowSettings(true)}>
+          <Settings className="h-4 w-4 mr-2" />
+          Settings
+        </Button>
+        <Button variant="outline" size="sm" onClick={() => setShowAnalytics(true)}>
+          <Analytics className="h-4 w-4 mr-2" />
+          Analytics
+        </Button>
+      </div>
+
+      {/* Settings Dialog */}
+      <Dialog open={showSettings} onOpenChange={setShowSettings}>
+        <DialogContent className="sm:max-w-[500px]">
+          <DialogHeader>
+            <DialogTitle>Admin Settings</DialogTitle>
+            <DialogDescription>
+              Configure admin panel preferences and system settings.
+            </DialogDescription>
+          </DialogHeader>
+          {/* Add settings form content here */}
+          <div className="mt-4 text-sm text-muted-foreground">
+            Settings functionality coming soon.
+          </div>
+          <Button variant="outline" className="mt-4" onClick={() => setShowSettings(false)}>
+            Close
+          </Button>
+        </DialogContent>
+      </Dialog>
+
+      {/* Analytics Dialog */}
+      <Dialog open={showAnalytics} onOpenChange={setShowAnalytics}>
+        <DialogContent className="sm:max-w-[400px]">
+          <DialogHeader>
+            <DialogTitle>Analytics</DialogTitle>
+            <DialogDescription>
+              The analytics feature is currently under construction. Please check back later!
+            </DialogDescription>
+          </DialogHeader>
+          <Button variant="outline" className="mt-4" onClick={() => setShowAnalytics(false)}>
+            Close
+          </Button>
+        </DialogContent>
+      </Dialog>
+
+      {/* Add other dashboard sections here */}
+    </div>
+  );
+};
+
+export default AdminPage;
+```
+
+---
+
+### ✅ Tips for Integration:
+
+* Ensure **`@/components/ui/button`** and **`dialog`** are pointing to your actual component paths.
+* If you're not using `lucide-react`, you can swap out the icons with any others (or SVGs).
+* This setup supports **Tailwind CSS**, **ShadCN UI**, or any modular UI system.
+* You can later expand `<DialogContent>` to include dynamic analytics, forms, or config options.
+
+Let me know if you'd like the settings form wired to backend endpoints, real-time data, or role-based access logic!
